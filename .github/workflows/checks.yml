@@ -1,0 +1,46 @@
+name: checks
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  data:
+    name: data consistency + Sigma
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r tests/requirements.txt
+      - name: pytest
+        run: python -m pytest -q tests
+      - name: Sigma rules are up to date
+        run: python tools/efg_sigma.py --check
+      - name: sigma check
+        run: sigma check -c tools/sigma-validation.yml --fail-on-issues sigma
+      - name: sigma convert (Splunk)
+        run: |
+          sigma convert -t splunk -p splunk_windows sigma -o efg.spl
+          test "$(grep -c . efg.spl)" -eq "$(find sigma -name '*.yml' | wc -l)"
+
+  queries:
+    name: Get-WinEvent -FilterXml on every subscription
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate subscription queries
+        shell: pwsh
+        run: ./tools/Test-SubscriptionQueries.ps1
+      - name: Snapshot runner channels and providers
+        shell: pwsh
+        run: ./tools/Export-WinEventSnapshot.ps1 -OutFile "$env:RUNNER_TEMP/win-snapshot-runner.json"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: win-snapshot-runner
+          path: ${{ runner.temp }}/win-snapshot-runner.json

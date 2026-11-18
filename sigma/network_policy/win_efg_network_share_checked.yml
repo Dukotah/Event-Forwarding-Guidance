@@ -1,0 +1,21 @@
+title: 'NSA Event Forwarding Guidance - Network Policy: Network Share Checked'
+id: 8a98efc8-e3f5-5bcc-b206-58c5c7a8fd33
+status: experimental
+description: 'Recommended event to collect: Network Share Checked (Security, event ID 5145). A network share object was checked to see whether the client can be granted desired access.'
+references:
+- https://github.com/nsacyber/Event-Forwarding-Guidance/blob/master/Events/README.md
+author: Generated from nsacyber/Event-Forwarding-Guidance Events/RecommendedEvents.json
+date: '2026-11-17'
+tags:
+- detection.threat-hunting
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    Provider_Name: Microsoft-Windows-Security-Auditing
+    EventID: 5145
+  condition: selection
+falsepositives:
+- Expected in normal operation; this rule marks events to collect, not malicious activity
+level: informational

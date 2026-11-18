@@ -1,0 +1,22 @@
+title: 'NSA Event Forwarding Guidance - External Media Detection: New Device Information'
+id: db93bf4f-f8cb-5999-9fa5-11f662127c48
+status: experimental
+description: 'Recommended event to collect: New Device Information (Microsoft-Windows-USB-USBHUB3-Analytic, event ID 43). This event is generated for any USB 2.0 and 3.0 devices being inserted into a USB 3.0 port. The respective event log was not introduced until Windows 8. Category guidance: Detection of USB device (e.g., mass storage devices) usage is important in some environments, such as air gapped networks. This section attempts to take the proactive avenue to detect USB insertion at real-time. Event ID 43 only appears under certain circumstances. The following events and event logs are only available in Windows 8 and above. Microsoft-Windows-USB-USBHUB3-Analytic is not an event log per se; it is a trace session log that stores tracing events in an Event Trace Log (.etl) file. The events created by Microsoft-Windows-USB-USBHUB3 publisher are sent to a direct channel (i.e., Analytic log) and cannot be subscribed to for event collection. Administrators should seek an alternative method
+  of collecting and analyzing this event (43).'
+references:
+- https://github.com/nsacyber/Event-Forwarding-Guidance/blob/master/Events/README.md
+author: Generated from nsacyber/Event-Forwarding-Guidance Events/RecommendedEvents.json
+date: '2026-11-17'
+tags:
+- detection.threat-hunting
+logsource:
+  product: windows
+detection:
+  selection:
+    Channel: Microsoft-Windows-USB-USBHUB3-Analytic
+    Provider_Name: Microsoft-Windows-USB-USBHUB3
+    EventID: 43
+  condition: selection
+falsepositives:
+- Expected in normal operation; this rule marks events to collect, not malicious activity
+level: informational

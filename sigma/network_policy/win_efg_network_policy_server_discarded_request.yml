@@ -1,0 +1,21 @@
+title: 'NSA Event Forwarding Guidance - Network Policy: Network Policy Server Discarded Request'
+id: c003fdd0-320d-5e57-9a50-5cfc2d3de3d6
+status: experimental
+description: 'Recommended event to collect: Network Policy Server Discarded Request (Security, event ID 6274). (RAS/VPN) Network Policy Server discarded the request for a user.'
+references:
+- https://github.com/nsacyber/Event-Forwarding-Guidance/blob/master/Events/README.md
+author: Generated from nsacyber/Event-Forwarding-Guidance Events/RecommendedEvents.json
+date: '2026-11-17'
+tags:
+- detection.threat-hunting
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    Provider_Name: Microsoft-Windows-Security-Auditing
+    EventID: 6274
+  condition: selection
+falsepositives:
+- Expected in normal operation; this rule marks events to collect, not malicious activity
+level: informational

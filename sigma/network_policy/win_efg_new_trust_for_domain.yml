@@ -1,0 +1,21 @@
+title: 'NSA Event Forwarding Guidance - Network Policy: New Trust for Domain'
+id: 890bdc23-38d7-5d22-a0b8-540474b6d132
+status: experimental
+description: 'Recommended event to collect: New Trust for Domain (Security, event ID 4706). A new trust was created to a domain.'
+references:
+- https://github.com/nsacyber/Event-Forwarding-Guidance/blob/master/Events/README.md
+author: Generated from nsacyber/Event-Forwarding-Guidance Events/RecommendedEvents.json
+date: '2026-11-17'
+tags:
+- detection.threat-hunting
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    Provider_Name: Microsoft-Windows-Security-Auditing
+    EventID: 4706
+  condition: selection
+falsepositives:
+- Expected in normal operation; this rule marks events to collect, not malicious activity
+level: informational

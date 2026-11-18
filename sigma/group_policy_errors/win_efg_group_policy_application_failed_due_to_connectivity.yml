@@ -1,0 +1,21 @@
+title: 'NSA Event Forwarding Guidance - Group Policy Errors: Group Policy Application Failed due to Connectivity'
+id: 6375c91a-2fb1-5a8d-9771-cacddfe8eb2a
+status: experimental
+description: 'Recommended event to collect: Group Policy Application Failed due to Connectivity (System, event ID 1129). Category guidance: Management of domain computers permits administrators to heighten the security and regulation of those machines with Group Policy. The inability to apply a policy due to a group policy error reduces the aforementioned benefits. An administrators should investigate these events immediately.'
+references:
+- https://github.com/nsacyber/Event-Forwarding-Guidance/blob/master/Events/README.md
+author: Generated from nsacyber/Event-Forwarding-Guidance Events/RecommendedEvents.json
+date: '2026-11-17'
+tags:
+- detection.threat-hunting
+logsource:
+  product: windows
+  service: system
+detection:
+  selection:
+    Provider_Name: Microsoft-Windows-GroupPolicy
+    EventID: 1129
+  condition: selection
+falsepositives:
+- Expected in normal operation; this rule marks events to collect, not malicious activity
+level: informational

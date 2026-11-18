@@ -1,0 +1,21 @@
+title: 'NSA Event Forwarding Guidance - Account Usage: Temp Profile Logon'
+id: 6b1e7da6-dfbf-5c74-a7ca-1dfe427fbbbe
+status: experimental
+description: 'Recommended event to collect: Temp Profile Logon (Application, event ID 1511). User Logging on with Temporary Profile. Category guidance: User account information can be collected and audited. Tracking local account usage can help detect Pass the Hash activity and other unauthorized account usage. Additional information such as remote desktop logins, users added to privileged groups, and account lockouts can also be tracked. User accounts being promoted to privileged groups should be audited very closely to ensure that users are in fact supposed to be in a privileged group. Unauthorized membership in privileged groups is a strong indicator that malicious activity has occurred. Lockout events for domain accounts are generated on the domain controller whereas lockout events for local accounts are generated on the local computer.'
+references:
+- https://github.com/nsacyber/Event-Forwarding-Guidance/blob/master/Events/README.md
+author: Generated from nsacyber/Event-Forwarding-Guidance Events/RecommendedEvents.json
+date: '2026-11-17'
+tags:
+- detection.threat-hunting
+logsource:
+  product: windows
+  service: application
+detection:
+  selection:
+    Provider_Name: Microsoft-Windows-User Profiles Service
+    EventID: 1511
+  condition: selection
+falsepositives:
+- Expected in normal operation; this rule marks events to collect, not malicious activity
+level: informational

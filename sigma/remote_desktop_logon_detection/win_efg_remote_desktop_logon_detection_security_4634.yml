@@ -1,0 +1,21 @@
+title: 'NSA Event Forwarding Guidance - Remote Desktop Logon Detection: Remote Desktop Logon Detection (Security, event 4634)'
+id: d0d9301c-7015-55a2-8261-1214a6ef9e46
+status: experimental
+description: 'Recommended event to collect: Remote Desktop Logon Detection (Security, event ID 4634). Category guidance: Remote Desktop account activity events are not easily identifiable using the Event Viewer GUI. When an account remotely connects to a client, a generic successful logon event is created. A custom **Query Filter** can aid in clarifying the type of logon that was performed. The query below shows logins using Remote Desktop. Remote Desktop activity should be monitored since only certain administrators should be using it, and they should be from a limited set of management workstations. Any Remote Desktop logins outside of expected activity should be investigated. The XPath queries below are used for the Event Viewer''s **Custom Views**. Event ID 4624 and Event ID 4634 respecively indicate when a user has logged on and logged off with RDP. A LogonType with the value of 10 indicates a Remote Interactive logon.'
+references:
+- https://github.com/nsacyber/Event-Forwarding-Guidance/blob/master/Events/README.md
+author: Generated from nsacyber/Event-Forwarding-Guidance Events/RecommendedEvents.json
+date: '2026-11-17'
+tags:
+- detection.threat-hunting
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 4634
+    LogonType: 10
+  condition: selection
+falsepositives:
+- Expected in normal operation; this rule marks events to collect, not malicious activity
+level: informational

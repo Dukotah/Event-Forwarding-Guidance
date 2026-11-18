@@ -1,0 +1,21 @@
+title: 'NSA Event Forwarding Guidance - Clearing Event Logs: Event Log was Cleared (Security)'
+id: c24a7152-d5d5-5e80-aea3-b8f336ed9517
+status: experimental
+description: 'Recommended event to collect: Event Log was Cleared (Security, event ID 1102). Category guidance: It is unlikely that event log data would be cleared during normal operations and it is likely that a malicious attacker may try to cover their tracks by clearing an event log. When an event log gets cleared, it is suspicious. Centrally collecting events has the added benefit of making it much harder for an attacker to cover their tracks. Event forwarding permits sources to forward multiple copies of a collected event to multiple collectors thus enabling redundant event collection. Using a redundant event collection model can minimize the single point of failure risk.'
+references:
+- https://github.com/nsacyber/Event-Forwarding-Guidance/blob/master/Events/README.md
+author: Generated from nsacyber/Event-Forwarding-Guidance Events/RecommendedEvents.json
+date: '2026-11-17'
+tags:
+- detection.threat-hunting
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    Provider_Name: Microsoft-Windows-Eventlog
+    EventID: 1102
+  condition: selection
+falsepositives:
+- Expected in normal operation; this rule marks events to collect, not malicious activity
+level: informational

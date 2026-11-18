@@ -1,0 +1,21 @@
+title: 'NSA Event Forwarding Guidance - Application Whitelisting: Process Terminated'
+id: 243ce126-3255-5451-97ae-6b9825b3d71a
+status: experimental
+description: 'Recommended event to collect: Process Terminated (Security, event ID 4689). Process Terminated. Category guidance: Application whitelisting events should be collected to look for applications that have been blocked from execution. Any blocked applications could be malware or users trying to run unapproved software. Software Restriction Policies (SRP) is supported on Windows XP and above. The AppLocker feature is available for Windows 7 and above Enterprise and Ultimate editions only. Application Whitelisting events can be collected if SRP or AppLocker are actively being used on the network.'
+references:
+- https://github.com/nsacyber/Event-Forwarding-Guidance/blob/master/Events/README.md
+author: Generated from nsacyber/Event-Forwarding-Guidance Events/RecommendedEvents.json
+date: '2026-11-17'
+tags:
+- detection.threat-hunting
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    Provider_Name: Microsoft-Windows-Security-Auditing
+    EventID: 4689
+  condition: selection
+falsepositives:
+- Expected in normal operation; this rule marks events to collect, not malicious activity
+level: informational

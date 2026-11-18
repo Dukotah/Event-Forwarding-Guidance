@@ -1,0 +1,21 @@
+title: 'NSA Event Forwarding Guidance - Network Policy: Trusted Domain Information Modified'
+id: a6c13cb3-5856-509f-9649-1cf808191f75
+status: experimental
+description: 'Recommended event to collect: Trusted Domain Information Modified (Security, event ID 4716). Trusted domain information was modified.'
+references:
+- https://github.com/nsacyber/Event-Forwarding-Guidance/blob/master/Events/README.md
+author: Generated from nsacyber/Event-Forwarding-Guidance Events/RecommendedEvents.json
+date: '2026-11-17'
+tags:
+- detection.threat-hunting
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    Provider_Name: Microsoft-Windows-Security-Auditing
+    EventID: 4716
+  condition: selection
+falsepositives:
+- Expected in normal operation; this rule marks events to collect, not malicious activity
+level: informational

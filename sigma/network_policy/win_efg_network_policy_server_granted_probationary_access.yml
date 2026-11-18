@@ -1,0 +1,21 @@
+title: 'NSA Event Forwarding Guidance - Network Policy: Network Policy Server Granted Probationary Access'
+id: 7b7ef3f6-5ee1-5434-a9ca-cb6db412b2fe
+status: experimental
+description: 'Recommended event to collect: Network Policy Server Granted Probationary Access (Security, event ID 6277). (RAS/VPN) Network Policy Server granted access to a user but put it on probation because the host did not meet the defined health policy.'
+references:
+- https://github.com/nsacyber/Event-Forwarding-Guidance/blob/master/Events/README.md
+author: Generated from nsacyber/Event-Forwarding-Guidance Events/RecommendedEvents.json
+date: '2026-11-17'
+tags:
+- detection.threat-hunting
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    Provider_Name: Microsoft-Windows-Security-Auditing
+    EventID: 6277
+  condition: selection
+falsepositives:
+- Expected in normal operation; this rule marks events to collect, not malicious activity
+level: informational

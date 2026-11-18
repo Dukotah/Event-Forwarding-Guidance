@@ -1,0 +1,21 @@
+title: 'NSA Event Forwarding Guidance - Network Policy: Wireless 802.1X Auth'
+id: b808e521-25c6-569d-85ca-83ced9527699
+status: experimental
+description: 'Recommended event to collect: Wireless 802.1X Auth (Security, event ID 5632). Wireless 802.1X Auth.'
+references:
+- https://github.com/nsacyber/Event-Forwarding-Guidance/blob/master/Events/README.md
+author: Generated from nsacyber/Event-Forwarding-Guidance Events/RecommendedEvents.json
+date: '2026-11-17'
+tags:
+- detection.threat-hunting
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    Provider_Name: Microsoft-Windows-Security-Auditing
+    EventID: 5632
+  condition: selection
+falsepositives:
+- Expected in normal operation; this rule marks events to collect, not malicious activity
+level: informational

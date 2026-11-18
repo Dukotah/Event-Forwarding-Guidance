@@ -1,0 +1,21 @@
+title: 'NSA Event Forwarding Guidance - Group Policy Errors: Generic Internal Error'
+id: 7c5f8a82-f95e-5025-98e3-23f359b6ad8c
+status: experimental
+description: 'Recommended event to collect: Generic Internal Error (System, event ID 1126). Category guidance: Management of domain computers permits administrators to heighten the security and regulation of those machines with Group Policy. The inability to apply a policy due to a group policy error reduces the aforementioned benefits. An administrators should investigate these events immediately.'
+references:
+- https://github.com/nsacyber/Event-Forwarding-Guidance/blob/master/Events/README.md
+author: Generated from nsacyber/Event-Forwarding-Guidance Events/RecommendedEvents.json
+date: '2026-11-17'
+tags:
+- detection.threat-hunting
+logsource:
+  product: windows
+  service: system
+detection:
+  selection:
+    Provider_Name: Microsoft-Windows-GroupPolicy
+    EventID: 1126
+  condition: selection
+falsepositives:
+- Expected in normal operation; this rule marks events to collect, not malicious activity
+level: informational

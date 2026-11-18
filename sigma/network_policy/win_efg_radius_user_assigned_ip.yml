@@ -1,0 +1,21 @@
+title: 'NSA Event Forwarding Guidance - Network Policy: RADIUS User assigned IP'
+id: 288e2bfc-6329-5c78-b7b1-effb5b6f42db
+status: experimental
+description: 'Recommended event to collect: RADIUS User assigned IP (RemoteAccess, event ID 20250). RADIUS authentication User assigned IP address.'
+references:
+- https://github.com/nsacyber/Event-Forwarding-Guidance/blob/master/Events/README.md
+author: Generated from nsacyber/Event-Forwarding-Guidance Events/RecommendedEvents.json
+date: '2026-11-17'
+tags:
+- detection.threat-hunting
+logsource:
+  product: windows
+detection:
+  selection:
+    Channel: RemoteAccess
+    Provider_Name: Microsoft-Windows-MPRMSG
+    EventID: 20250
+  condition: selection
+falsepositives:
+- Expected in normal operation; this rule marks events to collect, not malicious activity
+level: informational

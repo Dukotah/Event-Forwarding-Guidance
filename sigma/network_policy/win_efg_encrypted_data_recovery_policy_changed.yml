@@ -1,0 +1,21 @@
+title: 'NSA Event Forwarding Guidance - Network Policy: Encrypted Data Recovery Policy Changed'
+id: 1bdbdcb3-8615-5942-9232-16ddb22c1573
+status: experimental
+description: 'Recommended event to collect: Encrypted Data Recovery Policy Changed (Security, event ID 4714). Encrypted data recovery policy was changed.'
+references:
+- https://github.com/nsacyber/Event-Forwarding-Guidance/blob/master/Events/README.md
+author: Generated from nsacyber/Event-Forwarding-Guidance Events/RecommendedEvents.json
+date: '2026-11-17'
+tags:
+- detection.threat-hunting
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    Provider_Name: Microsoft-Windows-Security-Auditing
+    EventID: 4714
+  condition: selection
+falsepositives:
+- Expected in normal operation; this rule marks events to collect, not malicious activity
+level: informational

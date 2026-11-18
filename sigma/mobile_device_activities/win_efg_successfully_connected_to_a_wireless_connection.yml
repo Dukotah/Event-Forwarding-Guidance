@@ -1,0 +1,21 @@
+title: 'NSA Event Forwarding Guidance - Mobile Device Activities: Successfully connected to a Wireless connection'
+id: 94229166-1a1f-5844-9a57-9074e18363d2
+status: experimental
+description: 'Recommended event to collect: Successfully connected to a Wireless connection (Microsoft-Windows-WLAN-AutoConfig/Operational, event ID 8001). Category guidance: Wireless devices are ubiquitious and the need to record an enterprise''s wireless device activities may be critical. A wireless device could become compromised while traveling between different networks, regardless of the protocol used for communication (e.g., 802.11 or Bluetooth). Therefore, the tracking of which networks mobile devices are entering and exiting is useful to prevent further compromises. The creation frequency of the following events depend on how often the device disconnects and reconnects to a wireless network. Each event below provides mostly similar information with the exception that additional fields have been added to certain events.'
+references:
+- https://github.com/nsacyber/Event-Forwarding-Guidance/blob/master/Events/README.md
+author: Generated from nsacyber/Event-Forwarding-Guidance Events/RecommendedEvents.json
+date: '2026-11-17'
+tags:
+- detection.threat-hunting
+logsource:
+  product: windows
+detection:
+  selection:
+    Channel: Microsoft-Windows-WLAN-AutoConfig/Operational
+    Provider_Name: Microsoft-Windows-WLAN-AutoConfig
+    EventID: 8001
+  condition: selection
+falsepositives:
+- Expected in normal operation; this rule marks events to collect, not malicious activity
+level: informational

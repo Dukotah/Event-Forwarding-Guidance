@@ -1,0 +1,21 @@
+title: 'NSA Event Forwarding Guidance - System Integrity: Registry Modification'
+id: f5ae9d01-ab7e-54e0-9037-f482aab5bde1
+status: experimental
+description: 'Recommended event to collect: Registry Modification (Security, event ID 4657). Registry modification.'
+references:
+- https://github.com/nsacyber/Event-Forwarding-Guidance/blob/master/Events/README.md
+author: Generated from nsacyber/Event-Forwarding-Guidance Events/RecommendedEvents.json
+date: '2026-11-17'
+tags:
+- detection.threat-hunting
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    Provider_Name: Microsoft-Windows-Security-Auditing
+    EventID: 4657
+  condition: selection
+falsepositives:
+- Expected in normal operation; this rule marks events to collect, not malicious activity
+level: informational

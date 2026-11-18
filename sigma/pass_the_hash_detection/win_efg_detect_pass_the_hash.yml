@@ -1,0 +1,25 @@
+title: 'NSA Event Forwarding Guidance - Pass the Hash Detection: Detect Pass the Hash'
+id: 0185d07e-98c3-5efb-91f4-0f233670803e
+status: experimental
+description: 'Recommended event to collect: Detect Pass the Hash (Security, event ID 4624, 4625). Category guidance: Tracking user accounts for detecting Pass the Hash (PtH) requires creating a custom view with XML to configure more advanced filtering options. The event query language is based on XPath. The recommended **QueryList** below is limited in detecting PtH attacks. These queries focus on discovering lateral movement by an attacker using local accounts that are not part of a domain. The **QueryList** captures events that show a local account attempting to connect remotely to another machine not part of the domain. This event is a rarity so any occurrence should be treated as suspicious. These XPath queries below are used for the Event Viewer''s **Custom Views**. The successful use of PtH for lateral movement between workstations would trigger event ID 4624, with an event level of Information, from the Security log. This behavior would be a **LogonType** of 3 using NTLM authentication
+  where it is not a domain logon and not the ANONYMOUS LOGON account. To clearly summarize the event that is being collected, see event 4624 below. In the **QueryList** below, substitute the <DOMAIN NAME> section with the desired domain name. A failed logon attempt when trying to move laterally using PtH would trigger an event ID 4625. This would have a **LogonType** of 3 using NTLM authentication where it is not a domain logon and not the ANONYMOUS LOGON account. To clearly summarize the event that is being collected, see event 4625 below.'
+references:
+- https://github.com/nsacyber/Event-Forwarding-Guidance/blob/master/Events/README.md
+author: Generated from nsacyber/Event-Forwarding-Guidance Events/RecommendedEvents.json
+date: '2026-11-17'
+tags:
+- detection.threat-hunting
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID:
+    - 4624
+    - 4625
+    LogonType: 3
+    AuthenticationPackageName: NTLM
+  condition: selection
+falsepositives:
+- Expected in normal operation; this rule marks events to collect, not malicious activity
+level: informational

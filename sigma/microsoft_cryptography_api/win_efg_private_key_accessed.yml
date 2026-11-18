@@ -1,0 +1,21 @@
+title: 'NSA Event Forwarding Guidance - Microsoft Cryptography API: Private Key Accessed'
+id: f452d01f-6c8b-5b29-8547-99fb2454f325
+status: experimental
+description: 'Recommended event to collect: Private Key Accessed (Microsoft-Windows-CAPI2/Operational, event ID 70). Private Key Accessed. Category guidance: The Microsoft CryptoAPI can be used for certificate verification and encryption/decryption of data. There are a number of interesting events that should be logged for suspicious behavior or for future auditing.'
+references:
+- https://github.com/nsacyber/Event-Forwarding-Guidance/blob/master/Events/README.md
+author: Generated from nsacyber/Event-Forwarding-Guidance Events/RecommendedEvents.json
+date: '2026-11-17'
+tags:
+- detection.threat-hunting
+logsource:
+  product: windows
+  service: capi2
+detection:
+  selection:
+    Provider_Name: Microsoft-Windows-CAPI2
+    EventID: 70
+  condition: selection
+falsepositives:
+- Expected in normal operation; this rule marks events to collect, not malicious activity
+level: informational

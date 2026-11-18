@@ -1,0 +1,21 @@
+title: 'NSA Event Forwarding Guidance - Network Policy: Kerberos Service Ticket Req. Failed'
+id: b8e1b519-41a4-5b34-a4dc-b83dc220ee37
+status: experimental
+description: 'Recommended event to collect: Kerberos Service Ticket Req. Failed (Security, event ID 4769). [Failure Event] Kerberos Service Ticket request.'
+references:
+- https://github.com/nsacyber/Event-Forwarding-Guidance/blob/master/Events/README.md
+author: Generated from nsacyber/Event-Forwarding-Guidance Events/RecommendedEvents.json
+date: '2026-11-17'
+tags:
+- detection.threat-hunting
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    Provider_Name: Microsoft-Windows-Security-Auditing
+    EventID: 4769
+  condition: selection
+falsepositives:
+- Expected in normal operation; this rule marks events to collect, not malicious activity
+level: informational

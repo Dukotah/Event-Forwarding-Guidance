@@ -1,0 +1,21 @@
+title: 'NSA Event Forwarding Guidance - System Integrity: System Time Changed'
+id: 1cdbf457-6051-549a-a586-4e8a1e6724ab
+status: experimental
+description: 'Recommended event to collect: System Time Changed (System, event ID 1). System time changed.'
+references:
+- https://github.com/nsacyber/Event-Forwarding-Guidance/blob/master/Events/README.md
+author: Generated from nsacyber/Event-Forwarding-Guidance Events/RecommendedEvents.json
+date: '2026-11-17'
+tags:
+- detection.threat-hunting
+logsource:
+  product: windows
+  service: system
+detection:
+  selection:
+    Provider_Name: Microsoft-Windows-Kernel-General
+    EventID: 1
+  condition: selection
+falsepositives:
+- Expected in normal operation; this rule marks events to collect, not malicious activity
+level: informational

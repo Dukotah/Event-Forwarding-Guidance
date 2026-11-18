@@ -1,0 +1,27 @@
+title: 'NSA Event Forwarding Guidance - Kernel Driver Signing: Code Integrity Check'
+id: ca81d1cf-42e7-5b0e-98ba-1b04174c87e3
+status: experimental
+description: 'Recommended event to collect: Code Integrity Check (Microsoft-Windows-CodeIntegrity/Operational, event ID 3001, 3002, 3003, 3004, 3010, 3023). Category guidance: Introduction of kernel driver signing in the 64-bit version of Windows Vista significantly improves defenses against insertion of malicious drivers or activities in the kernel. Any indication of a protected driver being altered may indicate malicious activity or a disk error and warrants investigation.'
+references:
+- https://github.com/nsacyber/Event-Forwarding-Guidance/blob/master/Events/README.md
+author: Generated from nsacyber/Event-Forwarding-Guidance Events/RecommendedEvents.json
+date: '2026-11-17'
+tags:
+- detection.threat-hunting
+logsource:
+  product: windows
+  service: codeintegrity-operational
+detection:
+  selection:
+    Provider_Name: Microsoft-Windows-CodeIntegrity
+    EventID:
+    - 3001
+    - 3002
+    - 3003
+    - 3004
+    - 3010
+    - 3023
+  condition: selection
+falsepositives:
+- Expected in normal operation; this rule marks events to collect, not malicious activity
+level: informational

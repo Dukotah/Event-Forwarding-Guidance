@@ -1,0 +1,23 @@
+title: 'NSA Event Forwarding Guidance - DNS/Directory Services: DNS Request/Response'
+id: 16cc1fd5-c4fe-5d4a-beb9-b790b58b27f9
+status: experimental
+description: 'Recommended event to collect: DNS Request/Response (Microsoft-Windows-DNSServer/Analytical, event ID 256, 257). Requires enhanced auditing enabled. Category guidance: Malicious or misused software can often attempt to resolve blacklisted or suspicious domain names. The collection of DNS queries and responses are recommended in order to enable discovery of compromise or intrusion through security analytics. A number of the below event IDs will only be recorded with enhanced auditing enabled. See [Network Forensics with Windows DNS Analytical Logging](http://blogs.technet.com/b/teamdhcp/archive/2015/11/24/network-forensics-with-windows-dns-analytical-logging.aspx) for more information.'
+references:
+- https://github.com/nsacyber/Event-Forwarding-Guidance/blob/master/Events/README.md
+author: Generated from nsacyber/Event-Forwarding-Guidance Events/RecommendedEvents.json
+date: '2026-11-17'
+tags:
+- detection.threat-hunting
+logsource:
+  product: windows
+detection:
+  selection:
+    Channel: Microsoft-Windows-DNSServer/Analytical
+    Provider_Name: Microsoft-Windows-DNSServer
+    EventID:
+    - 256
+    - 257
+  condition: selection
+falsepositives:
+- Expected in normal operation; this rule marks events to collect, not malicious activity
+level: informational

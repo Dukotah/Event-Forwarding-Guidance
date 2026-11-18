@@ -1,0 +1,23 @@
+title: 'NSA Event Forwarding Guidance - Windows Firewall: Firewall Rules Deleted'
+id: 1018d247-07ba-517f-b638-9c6d00a142a7
+status: experimental
+description: 'Recommended event to collect: Firewall Rules Deleted (Microsoft-Windows-Windows Firewall With Advanced Security/Firewall, event ID 2006, 2033). Category guidance: If client workstations are taking advantage of the built-in host-based Windows Firewall, then there is value in collecting events to track the firewall status. For example, if the firewall state changes from on to off, then that log should be collected. Normal users should not be modifying the firewall rules of their local machine. The below events for the listed versions of the Windows operating system are only applicable to modifications of the local firewall settings.'
+references:
+- https://github.com/nsacyber/Event-Forwarding-Guidance/blob/master/Events/README.md
+author: Generated from nsacyber/Event-Forwarding-Guidance Events/RecommendedEvents.json
+date: '2026-11-17'
+tags:
+- detection.threat-hunting
+logsource:
+  product: windows
+  service: firewall-as
+detection:
+  selection:
+    Provider_Name: Microsoft-Windows-Windows Firewall With Advanced Security
+    EventID:
+    - 2006
+    - 2033
+  condition: selection
+falsepositives:
+- Expected in normal operation; this rule marks events to collect, not malicious activity
+level: informational

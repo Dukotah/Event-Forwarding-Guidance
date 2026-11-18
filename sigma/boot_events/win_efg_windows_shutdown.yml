@@ -1,0 +1,21 @@
+title: 'NSA Event Forwarding Guidance - Boot Events: Windows Shutdown'
+id: 42e04da0-15d6-57b0-a456-43196c685c66
+status: experimental
+description: 'Recommended event to collect: Windows Shutdown (System, event ID 13). Windows Shutdown.'
+references:
+- https://github.com/nsacyber/Event-Forwarding-Guidance/blob/master/Events/README.md
+author: Generated from nsacyber/Event-Forwarding-Guidance Events/RecommendedEvents.json
+date: '2026-11-17'
+tags:
+- detection.threat-hunting
+logsource:
+  product: windows
+  service: system
+detection:
+  selection:
+    Provider_Name: Microsoft-Windows-Kernel-General
+    EventID: 13
+  condition: selection
+falsepositives:
+- Expected in normal operation; this rule marks events to collect, not malicious activity
+level: informational

@@ -1,0 +1,21 @@
+title: 'NSA Event Forwarding Guidance - PowerShell Activities: Exception Raised'
+id: 07910a2e-3755-5ebb-9e00-0f7a73882461
+status: experimental
+description: 'Recommended event to collect: Exception Raised (Microsoft-Windows-Powershell/Operational, event ID 4103). PowerShell exception raised. Category guidance: PowerShell events can be interesting as Powershell is included by default in modern Windows installations. If a PowerShell script is failing, it may indicate misconfiguration, missing files, or malicious activity. Use of the Get-MessageTrackingLog cmdlet can be used to enumerate Exchange Server mail metadata, returning detailed information about the history of each mail message traveling through the server.'
+references:
+- https://github.com/nsacyber/Event-Forwarding-Guidance/blob/master/Events/README.md
+author: Generated from nsacyber/Event-Forwarding-Guidance Events/RecommendedEvents.json
+date: '2026-11-17'
+tags:
+- detection.threat-hunting
+logsource:
+  product: windows
+  service: powershell
+detection:
+  selection:
+    Provider_Name: Microsoft-Windows-Powershell
+    EventID: 4103
+  condition: selection
+falsepositives:
+- Expected in normal operation; this rule marks events to collect, not malicious activity
+level: informational

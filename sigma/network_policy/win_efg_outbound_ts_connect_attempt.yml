@@ -1,0 +1,21 @@
+title: 'NSA Event Forwarding Guidance - Network Policy: Outbound TS Connect Attempt'
+id: d13b34a9-5f9d-5686-90f9-f970485362d5
+status: experimental
+description: 'Recommended event to collect: Outbound TS Connect Attempt (Microsoft-Windows-TerminalServices-RDPClient/Operational, event ID 1024). Outbound TS connection attempt.'
+references:
+- https://github.com/nsacyber/Event-Forwarding-Guidance/blob/master/Events/README.md
+author: Generated from nsacyber/Event-Forwarding-Guidance Events/RecommendedEvents.json
+date: '2026-11-17'
+tags:
+- detection.threat-hunting
+logsource:
+  product: windows
+detection:
+  selection:
+    Channel: Microsoft-Windows-TerminalServices-RDPClient/Operational
+    Provider_Name: Microsoft-Windows-TerminalServices-ClientActiveXCore
+    EventID: 1024
+  condition: selection
+falsepositives:
+- Expected in normal operation; this rule marks events to collect, not malicious activity
+level: informational

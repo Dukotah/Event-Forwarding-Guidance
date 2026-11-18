@@ -1,0 +1,21 @@
+title: 'NSA Event Forwarding Guidance - Certificate Services: Certificate Services Template Security Updated'
+id: 6403882a-3486-5789-901a-ce759873331f
+status: experimental
+description: 'Recommended event to collect: Certificate Services Template Security Updated (Security, event ID 4900). Certificate Services template security was updated. Category guidance: Certificate Services receives requests for digital certificates over RPC or HTTP. For organizations that do not rely upon external certification authorities, policies and settings can be customized in order to support the organization''s requirements. The below events can be collected to ensure expected use.'
+references:
+- https://github.com/nsacyber/Event-Forwarding-Guidance/blob/master/Events/README.md
+author: Generated from nsacyber/Event-Forwarding-Guidance Events/RecommendedEvents.json
+date: '2026-11-17'
+tags:
+- detection.threat-hunting
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    Provider_Name: Microsoft-Windows-Security-Auditing
+    EventID: 4900
+  condition: selection
+falsepositives:
+- Expected in normal operation; this rule marks events to collect, not malicious activity
+level: informational

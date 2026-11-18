@@ -1,0 +1,28 @@
+title: 'NSA Event Forwarding Guidance - System or Service Failures: Windows Service Fails or Crashes'
+id: e21bbb1c-6277-5ab7-aed7-0bffa0d406be
+status: experimental
+description: 'Recommended event to collect: Windows Service Fails or Crashes (System, event ID 7022, 7023, 7024, 7026, 7031, 7032, 7034). Category guidance: System and Services failures are interesting events that may need to be investigated. Service operations normally do not fail. If a service fails, then it may be of concern and should be reviewed by an administrator. If a Windows service continues to fail repeatedly on the same machines, then this may indicate that an attacker is targeting a service.'
+references:
+- https://github.com/nsacyber/Event-Forwarding-Guidance/blob/master/Events/README.md
+author: Generated from nsacyber/Event-Forwarding-Guidance Events/RecommendedEvents.json
+date: '2026-11-17'
+tags:
+- detection.threat-hunting
+logsource:
+  product: windows
+  service: system
+detection:
+  selection:
+    Provider_Name: Service Control Manager
+    EventID:
+    - 7022
+    - 7023
+    - 7024
+    - 7026
+    - 7031
+    - 7032
+    - 7034
+  condition: selection
+falsepositives:
+- Expected in normal operation; this rule marks events to collect, not malicious activity
+level: informational

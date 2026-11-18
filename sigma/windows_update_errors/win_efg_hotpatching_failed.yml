@@ -1,0 +1,21 @@
+title: 'NSA Event Forwarding Guidance - Windows Update Errors: Hotpatching Failed'
+id: 539628ef-4f2b-526b-b9c6-6c254fade57b
+status: experimental
+description: 'Recommended event to collect: Hotpatching Failed (Setup, event ID 1009). Category guidance: A machine must be kept up to date to mitigate known vulnerabilities. Although unlikely, these patches may sometimes fail to apply. Failure to update issues should be addressed to avoid prolonging the existence of an application issue or a vulnerability in the operating system or an application.'
+references:
+- https://github.com/nsacyber/Event-Forwarding-Guidance/blob/master/Events/README.md
+author: Generated from nsacyber/Event-Forwarding-Guidance Events/RecommendedEvents.json
+date: '2026-11-17'
+tags:
+- detection.threat-hunting
+logsource:
+  product: windows
+  service: setup
+detection:
+  selection:
+    Provider_Name: Microsoft-Windows-Servicing
+    EventID: 1009
+  condition: selection
+falsepositives:
+- Expected in normal operation; this rule marks events to collect, not malicious activity
+level: informational

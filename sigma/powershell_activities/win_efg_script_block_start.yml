@@ -1,0 +1,21 @@
+title: 'NSA Event Forwarding Guidance - PowerShell Activities: Script block start'
+id: 599c67f4-a5a2-5e05-840c-a387f8059a4c
+status: experimental
+description: 'Recommended event to collect: Script block start (Microsoft-Windows-Powershell/Operational, event ID 4105). PowerShell script block start. Category guidance: PowerShell events can be interesting as Powershell is included by default in modern Windows installations. If a PowerShell script is failing, it may indicate misconfiguration, missing files, or malicious activity. Use of the Get-MessageTrackingLog cmdlet can be used to enumerate Exchange Server mail metadata, returning detailed information about the history of each mail message traveling through the server.'
+references:
+- https://github.com/nsacyber/Event-Forwarding-Guidance/blob/master/Events/README.md
+author: Generated from nsacyber/Event-Forwarding-Guidance Events/RecommendedEvents.json
+date: '2026-11-17'
+tags:
+- detection.threat-hunting
+logsource:
+  product: windows
+  service: powershell
+detection:
+  selection:
+    Provider_Name: Microsoft-Windows-Powershell
+    EventID: 4105
+  condition: selection
+falsepositives:
+- Expected in normal operation; this rule marks events to collect, not malicious activity
+level: informational

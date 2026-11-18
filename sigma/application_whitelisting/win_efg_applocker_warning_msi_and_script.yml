@@ -1,0 +1,21 @@
+title: 'NSA Event Forwarding Guidance - Application Whitelisting: AppLocker Warning (MSI and Script)'
+id: a2e1c26c-b47c-5cc4-91c7-336bccf6c27a
+status: experimental
+description: 'Recommended event to collect: AppLocker Warning (Microsoft-Windows-AppLocker/MSI and Script, event ID 8006). Would have been blocked if rules were enforced. Audit only mode. Category guidance: Application whitelisting events should be collected to look for applications that have been blocked from execution. Any blocked applications could be malware or users trying to run unapproved software. Software Restriction Policies (SRP) is supported on Windows XP and above. The AppLocker feature is available for Windows 7 and above Enterprise and Ultimate editions only. Application Whitelisting events can be collected if SRP or AppLocker are actively being used on the network.'
+references:
+- https://github.com/nsacyber/Event-Forwarding-Guidance/blob/master/Events/README.md
+author: Generated from nsacyber/Event-Forwarding-Guidance Events/RecommendedEvents.json
+date: '2026-11-17'
+tags:
+- detection.threat-hunting
+logsource:
+  product: windows
+  service: applocker
+detection:
+  selection:
+    Provider_Name: Microsoft-Windows-AppLocker
+    EventID: 8006
+  condition: selection
+falsepositives:
+- Expected in normal operation; this rule marks events to collect, not malicious activity
+level: informational

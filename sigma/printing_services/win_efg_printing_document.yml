@@ -1,0 +1,21 @@
+title: 'NSA Event Forwarding Guidance - Printing Services: Printing Document'
+id: e9148ce2-1002-58db-a4ea-70d0fb673548
+status: experimental
+description: 'Recommended event to collect: Printing Document (Microsoft-Windows-PrintService/Operational, event ID 307). Category guidance: Document printing is essential for daily operations in many environments. The vast amount of printing requests increases the difficulty in tracking and identifying which document was printed and by whom. Documents forwarded to a printer for processing can be recorded for logging purposes in multiple ways. Each printing job can be logged either by a printing server, the printer itself, or the requesting machine. The logging of these activities permits early detection of printing certain documents. The following event is generated on the client machine requesting to print a document. This event should be treated as a historical record or an additional piece of evidence rather than an auditing record of printing jobs. This operational log is disabled by default and requires the log to be enabled to capture this event.'
+references:
+- https://github.com/nsacyber/Event-Forwarding-Guidance/blob/master/Events/README.md
+author: Generated from nsacyber/Event-Forwarding-Guidance Events/RecommendedEvents.json
+date: '2026-11-17'
+tags:
+- detection.threat-hunting
+logsource:
+  product: windows
+  service: printservice-operational
+detection:
+  selection:
+    Provider_Name: Microsoft-Windows-PrintService
+    EventID: 307
+  condition: selection
+falsepositives:
+- Expected in normal operation; this rule marks events to collect, not malicious activity
+level: informational

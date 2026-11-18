@@ -1,0 +1,6 @@
+elementpath==5.1.4
+pysigma==2.1.0
+pysigma-backend-splunk==3.0.1
+pytest==9.2.0
+pyyaml==6.0.3
+sigma-cli==4.0.1

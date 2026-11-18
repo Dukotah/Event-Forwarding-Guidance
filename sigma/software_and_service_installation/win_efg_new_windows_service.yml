@@ -1,0 +1,21 @@
+title: 'NSA Event Forwarding Guidance - Software and Service Installation: New Windows Service'
+id: ab051e21-ee54-5344-915c-441cd4d8bf6a
+status: experimental
+description: 'Recommended event to collect: New Windows Service (System, event ID 7045). Category guidance: As part of normal network operations, new software and services will be installed, and there is value in monitoring this activity. Administrators can review these logs for newly installed software or system services and verify that they do not pose a risk to the network. It should be noted that an additional Program Inventory event ID 800 is generated daily on Windows 7 at 12:30 AM to provide a summary of application activities (e.g., number of new application installations). Event ID 800 is generated on Windows 8 as well under different circumstances. This event is beneficial to administrators seeking to identify the number of applications that were installed or removed on a machine.'
+references:
+- https://github.com/nsacyber/Event-Forwarding-Guidance/blob/master/Events/README.md
+author: Generated from nsacyber/Event-Forwarding-Guidance Events/RecommendedEvents.json
+date: '2026-11-17'
+tags:
+- detection.threat-hunting
+logsource:
+  product: windows
+  service: system
+detection:
+  selection:
+    Provider_Name: Service Control Manager
+    EventID: 7045
+  condition: selection
+falsepositives:
+- Expected in normal operation; this rule marks events to collect, not malicious activity
+level: informational

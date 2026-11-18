@@ -1,0 +1,21 @@
+title: 'NSA Event Forwarding Guidance - Network Policy: Role Separation Enabled'
+id: 8066a1e4-2a38-5444-a840-9c78e1dbff31
+status: experimental
+description: 'Recommended event to collect: Role Separation Enabled (Security, event ID 4897). Role separation enabled.'
+references:
+- https://github.com/nsacyber/Event-Forwarding-Guidance/blob/master/Events/README.md
+author: Generated from nsacyber/Event-Forwarding-Guidance Events/RecommendedEvents.json
+date: '2026-11-17'
+tags:
+- detection.threat-hunting
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    Provider_Name: Microsoft-Windows-Security-Auditing
+    EventID: 4897
+  condition: selection
+falsepositives:
+- Expected in normal operation; this rule marks events to collect, not malicious activity
+level: informational

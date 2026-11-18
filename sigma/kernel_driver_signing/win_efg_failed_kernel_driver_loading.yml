@@ -1,0 +1,21 @@
+title: 'NSA Event Forwarding Guidance - Kernel Driver Signing: Failed Kernel Driver Loading'
+id: 2a71d598-9369-54fa-bd69-a9ec3b809b5b
+status: experimental
+description: 'Recommended event to collect: Failed Kernel Driver Loading (System, event ID 219). Category guidance: Introduction of kernel driver signing in the 64-bit version of Windows Vista significantly improves defenses against insertion of malicious drivers or activities in the kernel. Any indication of a protected driver being altered may indicate malicious activity or a disk error and warrants investigation.'
+references:
+- https://github.com/nsacyber/Event-Forwarding-Guidance/blob/master/Events/README.md
+author: Generated from nsacyber/Event-Forwarding-Guidance Events/RecommendedEvents.json
+date: '2026-11-17'
+tags:
+- detection.threat-hunting
+logsource:
+  product: windows
+  service: system
+detection:
+  selection:
+    Provider_Name: Microsoft-Windows-Kernel-PnP
+    EventID: 219
+  condition: selection
+falsepositives:
+- Expected in normal operation; this rule marks events to collect, not malicious activity
+level: informational

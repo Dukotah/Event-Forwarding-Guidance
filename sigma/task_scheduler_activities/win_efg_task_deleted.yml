@@ -1,0 +1,21 @@
+title: 'NSA Event Forwarding Guidance - Task Scheduler Activities: Task Deleted'
+id: b688f71e-fec5-5d0c-ba0a-798a665609eb
+status: experimental
+description: 'Recommended event to collect: Task Deleted (Microsoft-Windows-TaskScheduler/Operational, event ID 141). Task Deleted. Category guidance: Scheduled tasks can be maliciously created or deleted. The Task Scheduler can be used, for instance, to create tasks that wait for certain preconditions before downloading malicious files or to load malicious software into memory.'
+references:
+- https://github.com/nsacyber/Event-Forwarding-Guidance/blob/master/Events/README.md
+author: Generated from nsacyber/Event-Forwarding-Guidance Events/RecommendedEvents.json
+date: '2026-11-17'
+tags:
+- detection.threat-hunting
+logsource:
+  product: windows
+  service: taskscheduler
+detection:
+  selection:
+    Provider_Name: Microsoft-Windows-TaskScheduler
+    EventID: 141
+  condition: selection
+falsepositives:
+- Expected in normal operation; this rule marks events to collect, not malicious activity
+level: informational

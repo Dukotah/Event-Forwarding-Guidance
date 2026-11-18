@@ -1,0 +1,7 @@
+# Configuration for: sigma check -c tools/sigma-validation.yml --fail-on-issues sigma
+validators:
+  - all
+exclusions:
+  # Process Created (Security 4688). The guidance recommends the Security event itself;
+  # SigmaHQ prefers the generic process_creation category, which would also match Sysmon 1.
+  97fc218d-1fe1-53fa-a790-497813d8f3ab: specific_instead_of_generic_logsource

@@ -1,0 +1,21 @@
+title: 'NSA Event Forwarding Guidance - DNS/Directory Services: Directory service modified'
+id: fb0a6838-4fc8-5bfb-86b5-3932024d1aae
+status: experimental
+description: 'Recommended event to collect: Directory service modified (Security, event ID 5136). Directory Services object modified. Category guidance: Malicious or misused software can often attempt to resolve blacklisted or suspicious domain names. The collection of DNS queries and responses are recommended in order to enable discovery of compromise or intrusion through security analytics. A number of the below event IDs will only be recorded with enhanced auditing enabled. See [Network Forensics with Windows DNS Analytical Logging](http://blogs.technet.com/b/teamdhcp/archive/2015/11/24/network-forensics-with-windows-dns-analytical-logging.aspx) for more information.'
+references:
+- https://github.com/nsacyber/Event-Forwarding-Guidance/blob/master/Events/README.md
+author: Generated from nsacyber/Event-Forwarding-Guidance Events/RecommendedEvents.json
+date: '2026-11-17'
+tags:
+- detection.threat-hunting
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    Provider_Name: Microsoft-Windows-Security-Auditing
+    EventID: 5136
+  condition: selection
+falsepositives:
+- Expected in normal operation; this rule marks events to collect, not malicious activity
+level: informational

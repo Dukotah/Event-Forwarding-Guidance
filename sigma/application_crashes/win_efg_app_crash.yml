@@ -1,0 +1,21 @@
+title: 'NSA Event Forwarding Guidance - Application Crashes: App Crash'
+id: f781bb2c-a683-5c45-847d-318d11b3a33d
+status: experimental
+description: 'Recommended event to collect: App Crash (Application, event ID 1000). Application Crashed. Category guidance: Application crashes may warrant investigation to determine if the crash is malicious or benign. Categories of crashes include Blue Screen of Death (BSOD), Windows Error Reporting (WER), Application Crash and Application Hang events. If the organization is actively using the Microsoft Enhanced Mitigation Experience Toolkit (EMET), then EMET logs can also be collected.'
+references:
+- https://github.com/nsacyber/Event-Forwarding-Guidance/blob/master/Events/README.md
+author: Generated from nsacyber/Event-Forwarding-Guidance Events/RecommendedEvents.json
+date: '2026-11-17'
+tags:
+- detection.threat-hunting
+logsource:
+  product: windows
+  service: application
+detection:
+  selection:
+    Provider_Name: Application Error
+    EventID: 1000
+  condition: selection
+falsepositives:
+- Expected in normal operation; this rule marks events to collect, not malicious activity
+level: informational

@@ -1,0 +1,21 @@
+title: 'NSA Event Forwarding Guidance - Network Policy: Network Share Created'
+id: a6f21a07-c813-51dd-b408-bd1e13999261
+status: experimental
+description: 'Recommended event to collect: Network Share Created (Security, event ID 5142). Network Share Created.'
+references:
+- https://github.com/nsacyber/Event-Forwarding-Guidance/blob/master/Events/README.md
+author: Generated from nsacyber/Event-Forwarding-Guidance Events/RecommendedEvents.json
+date: '2026-11-17'
+tags:
+- detection.threat-hunting
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    Provider_Name: Microsoft-Windows-Security-Auditing
+    EventID: 5142
+  condition: selection
+falsepositives:
+- Expected in normal operation; this rule marks events to collect, not malicious activity
+level: informational

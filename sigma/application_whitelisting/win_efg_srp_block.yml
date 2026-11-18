@@ -1,0 +1,26 @@
+title: 'NSA Event Forwarding Guidance - Application Whitelisting: SRP Block'
+id: ddd88365-d837-5b9c-9b7c-25123ea1631e
+status: experimental
+description: 'Recommended event to collect: SRP Block (Application, event ID 865, 866, 867, 868, 882). Category guidance: Application whitelisting events should be collected to look for applications that have been blocked from execution. Any blocked applications could be malware or users trying to run unapproved software. Software Restriction Policies (SRP) is supported on Windows XP and above. The AppLocker feature is available for Windows 7 and above Enterprise and Ultimate editions only. Application Whitelisting events can be collected if SRP or AppLocker are actively being used on the network.'
+references:
+- https://github.com/nsacyber/Event-Forwarding-Guidance/blob/master/Events/README.md
+author: Generated from nsacyber/Event-Forwarding-Guidance Events/RecommendedEvents.json
+date: '2026-11-17'
+tags:
+- detection.threat-hunting
+logsource:
+  product: windows
+  service: application
+detection:
+  selection:
+    Provider_Name: Microsoft-Windows-SoftwareRestrictionPolicies
+    EventID:
+    - 865
+    - 866
+    - 867
+    - 868
+    - 882
+  condition: selection
+falsepositives:
+- Expected in normal operation; this rule marks events to collect, not malicious activity
+level: informational

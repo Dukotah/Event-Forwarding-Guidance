@@ -1,0 +1,21 @@
+title: 'NSA Event Forwarding Guidance - Certificate Services: Certificate Request Extension Changed'
+id: 01a4efb0-a05f-5f1c-89a7-b533d5faba7e
+status: experimental
+description: 'Recommended event to collect: Certificate Request Extension Changed (Security, event ID 4873). A certificate request extension changed. Category guidance: Certificate Services receives requests for digital certificates over RPC or HTTP. For organizations that do not rely upon external certification authorities, policies and settings can be customized in order to support the organization''s requirements. The below events can be collected to ensure expected use.'
+references:
+- https://github.com/nsacyber/Event-Forwarding-Guidance/blob/master/Events/README.md
+author: Generated from nsacyber/Event-Forwarding-Guidance Events/RecommendedEvents.json
+date: '2026-11-17'
+tags:
+- detection.threat-hunting
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    Provider_Name: Microsoft-Windows-Security-Auditing
+    EventID: 4873
+  condition: selection
+falsepositives:
+- Expected in normal operation; this rule marks events to collect, not malicious activity
+level: informational

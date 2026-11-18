@@ -1,0 +1,21 @@
+title: 'NSA Event Forwarding Guidance - Network Policy: Network Share Deleted'
+id: 153d5f4c-1a1b-53dd-9376-b3b9955bddfc
+status: experimental
+description: 'Recommended event to collect: Network Share Deleted (Security, event ID 5144). Network Share Deleted.'
+references:
+- https://github.com/nsacyber/Event-Forwarding-Guidance/blob/master/Events/README.md
+author: Generated from nsacyber/Event-Forwarding-Guidance Events/RecommendedEvents.json
+date: '2026-11-17'
+tags:
+- detection.threat-hunting
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    Provider_Name: Microsoft-Windows-Security-Auditing
+    EventID: 5144
+  condition: selection
+falsepositives:
+- Expected in normal operation; this rule marks events to collect, not malicious activity
+level: informational

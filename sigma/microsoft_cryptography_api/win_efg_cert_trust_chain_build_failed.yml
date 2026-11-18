@@ -1,0 +1,21 @@
+title: 'NSA Event Forwarding Guidance - Microsoft Cryptography API: Cert Trust Chain Build Failed'
+id: 28a62c57-4a1d-593d-a0ec-4c06b0394f02
+status: experimental
+description: 'Recommended event to collect: Cert Trust Chain Build Failed (Microsoft-Windows-CAPI2/Operational, event ID 11). Certificate Trust chain failure. Category guidance: The Microsoft CryptoAPI can be used for certificate verification and encryption/decryption of data. There are a number of interesting events that should be logged for suspicious behavior or for future auditing.'
+references:
+- https://github.com/nsacyber/Event-Forwarding-Guidance/blob/master/Events/README.md
+author: Generated from nsacyber/Event-Forwarding-Guidance Events/RecommendedEvents.json
+date: '2026-11-17'
+tags:
+- detection.threat-hunting
+logsource:
+  product: windows
+  service: capi2
+detection:
+  selection:
+    Provider_Name: Microsoft-Windows-CAPI2
+    EventID: 11
+  condition: selection
+falsepositives:
+- Expected in normal operation; this rule marks events to collect, not malicious activity
+level: informational

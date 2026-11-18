@@ -1,0 +1,27 @@
+title: 'NSA Event Forwarding Guidance - Windows Update Errors: Windows Update Failed'
+id: 9252cc3b-9bf3-5119-9413-c2edab90143f
+status: experimental
+description: 'Recommended event to collect: Windows Update Failed (Microsoft-Windows-WindowsUpdateClient/Operational, event ID 20, 24, 25, 31, 34, 35). Category guidance: A machine must be kept up to date to mitigate known vulnerabilities. Although unlikely, these patches may sometimes fail to apply. Failure to update issues should be addressed to avoid prolonging the existence of an application issue or a vulnerability in the operating system or an application.'
+references:
+- https://github.com/nsacyber/Event-Forwarding-Guidance/blob/master/Events/README.md
+author: Generated from nsacyber/Event-Forwarding-Guidance Events/RecommendedEvents.json
+date: '2026-11-17'
+tags:
+- detection.threat-hunting
+logsource:
+  product: windows
+detection:
+  selection:
+    Channel: Microsoft-Windows-WindowsUpdateClient/Operational
+    Provider_Name: Microsoft-Windows-WindowsUpdateClient
+    EventID:
+    - 20
+    - 24
+    - 25
+    - 31
+    - 34
+    - 35
+  condition: selection
+falsepositives:
+- Expected in normal operation; this rule marks events to collect, not malicious activity
+level: informational

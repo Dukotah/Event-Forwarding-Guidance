@@ -1,0 +1,21 @@
+title: 'NSA Event Forwarding Guidance - Boot Events: Windows Startup'
+id: d2f1b0ff-792d-5b61-a827-e60a68c0846d
+status: experimental
+description: 'Recommended event to collect: Windows Startup (System, event ID 12). Windows Startup.'
+references:
+- https://github.com/nsacyber/Event-Forwarding-Guidance/blob/master/Events/README.md
+author: Generated from nsacyber/Event-Forwarding-Guidance Events/RecommendedEvents.json
+date: '2026-11-17'
+tags:
+- detection.threat-hunting
+logsource:
+  product: windows
+  service: system
+detection:
+  selection:
+    Provider_Name: Microsoft-Windows-Kernel-General
+    EventID: 12
+  condition: selection
+falsepositives:
+- Expected in normal operation; this rule marks events to collect, not malicious activity
+level: informational

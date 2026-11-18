@@ -1,0 +1,21 @@
+title: 'NSA Event Forwarding Guidance - Certificate Services: Certificate Services approved request'
+id: fe1e9888-1ed3-58f3-9765-5e7f15ed51f6
+status: experimental
+description: 'Recommended event to collect: Certificate Services approved request (Security, event ID 4887). Certificate Services approved a certificate request and issued a certificate. Category guidance: Certificate Services receives requests for digital certificates over RPC or HTTP. For organizations that do not rely upon external certification authorities, policies and settings can be customized in order to support the organization''s requirements. The below events can be collected to ensure expected use.'
+references:
+- https://github.com/nsacyber/Event-Forwarding-Guidance/blob/master/Events/README.md
+author: Generated from nsacyber/Event-Forwarding-Guidance Events/RecommendedEvents.json
+date: '2026-11-17'
+tags:
+- detection.threat-hunting
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    Provider_Name: Microsoft-Windows-Security-Auditing
+    EventID: 4887
+  condition: selection
+falsepositives:
+- Expected in normal operation; this rule marks events to collect, not malicious activity
+level: informational

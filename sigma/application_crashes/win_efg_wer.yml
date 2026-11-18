@@ -1,0 +1,21 @@
+title: 'NSA Event Forwarding Guidance - Application Crashes: WER'
+id: 8eb9e578-9e49-5290-a497-486ec0b0c604
+status: experimental
+description: 'Recommended event to collect: WER (Application, event ID 1001). Category guidance: Application crashes may warrant investigation to determine if the crash is malicious or benign. Categories of crashes include Blue Screen of Death (BSOD), Windows Error Reporting (WER), Application Crash and Application Hang events. If the organization is actively using the Microsoft Enhanced Mitigation Experience Toolkit (EMET), then EMET logs can also be collected.'
+references:
+- https://github.com/nsacyber/Event-Forwarding-Guidance/blob/master/Events/README.md
+author: Generated from nsacyber/Event-Forwarding-Guidance Events/RecommendedEvents.json
+date: '2026-11-17'
+tags:
+- detection.threat-hunting
+logsource:
+  product: windows
+  service: application
+detection:
+  selection:
+    Provider_Name: Windows Error Reporting
+    EventID: 1001
+  condition: selection
+falsepositives:
+- Expected in normal operation; this rule marks events to collect, not malicious activity
+level: informational

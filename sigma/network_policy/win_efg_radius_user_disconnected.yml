@@ -1,0 +1,21 @@
+title: 'NSA Event Forwarding Guidance - Network Policy: RADIUS User Disconnected'
+id: 540cbc05-3d59-5583-b053-8fc449da673e
+status: experimental
+description: 'Recommended event to collect: RADIUS User Disconnected (RemoteAccess, event ID 20275). RADIUS authentication User Disconnected.'
+references:
+- https://github.com/nsacyber/Event-Forwarding-Guidance/blob/master/Events/README.md
+author: Generated from nsacyber/Event-Forwarding-Guidance Events/RecommendedEvents.json
+date: '2026-11-17'
+tags:
+- detection.threat-hunting
+logsource:
+  product: windows
+detection:
+  selection:
+    Channel: RemoteAccess
+    Provider_Name: Microsoft-Windows-MPRMSG
+    EventID: 20275
+  condition: selection
+falsepositives:
+- Expected in normal operation; this rule marks events to collect, not malicious activity
+level: informational

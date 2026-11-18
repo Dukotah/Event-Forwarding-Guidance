@@ -1,0 +1,21 @@
+title: 'NSA Event Forwarding Guidance - Application Whitelisting: Application Ran'
+id: ee89f391-3699-5c7f-9254-e6185eaaca98
+status: experimental
+description: 'Recommended event to collect: Application Ran (Microsoft-Windows-AppLocker/Packaged app-Execution, event ID 8020). Modern app run. Category guidance: Application whitelisting events should be collected to look for applications that have been blocked from execution. Any blocked applications could be malware or users trying to run unapproved software. Software Restriction Policies (SRP) is supported on Windows XP and above. The AppLocker feature is available for Windows 7 and above Enterprise and Ultimate editions only. Application Whitelisting events can be collected if SRP or AppLocker are actively being used on the network.'
+references:
+- https://github.com/nsacyber/Event-Forwarding-Guidance/blob/master/Events/README.md
+author: Generated from nsacyber/Event-Forwarding-Guidance Events/RecommendedEvents.json
+date: '2026-11-17'
+tags:
+- detection.threat-hunting
+logsource:
+  product: windows
+  service: applocker
+detection:
+  selection:
+    Provider_Name: Microsoft-Windows-AppLocker
+    EventID: 8020
+  condition: selection
+falsepositives:
+- Expected in normal operation; this rule marks events to collect, not malicious activity
+level: informational

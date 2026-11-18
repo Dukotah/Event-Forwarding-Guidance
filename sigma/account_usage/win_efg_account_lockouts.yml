@@ -1,0 +1,21 @@
+title: 'NSA Event Forwarding Guidance - Account Usage: Account Lockouts'
+id: 5ce07b8a-c11e-5c5a-9c06-09a9e2c63c07
+status: experimental
+description: 'Recommended event to collect: Account Lockouts (Security, event ID 4740). Category guidance: User account information can be collected and audited. Tracking local account usage can help detect Pass the Hash activity and other unauthorized account usage. Additional information such as remote desktop logins, users added to privileged groups, and account lockouts can also be tracked. User accounts being promoted to privileged groups should be audited very closely to ensure that users are in fact supposed to be in a privileged group. Unauthorized membership in privileged groups is a strong indicator that malicious activity has occurred. Lockout events for domain accounts are generated on the domain controller whereas lockout events for local accounts are generated on the local computer.'
+references:
+- https://github.com/nsacyber/Event-Forwarding-Guidance/blob/master/Events/README.md
+author: Generated from nsacyber/Event-Forwarding-Guidance Events/RecommendedEvents.json
+date: '2026-11-17'
+tags:
+- detection.threat-hunting
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    Provider_Name: Microsoft-Windows-Security-Auditing
+    EventID: 4740
+  condition: selection
+falsepositives:
+- Expected in normal operation; this rule marks events to collect, not malicious activity
+level: informational
